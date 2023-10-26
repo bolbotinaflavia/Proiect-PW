@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\app",
+    "\\app\\assets",
+    "\\app\\channels\\application_cable",
+    "\\app\\controllers",
+    "\\app\\javascript\\controllers",
+    "\\app\\views",
+    "\\app\\views\\layouts",
+    "\\config",
+    "\\lib"
+  ],
+  "SelectedNode": "\\app\\views",
+  "PreviewInSolutionExplorer": false
+}
