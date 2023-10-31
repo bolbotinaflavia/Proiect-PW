@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @eveniment %>
+
+<div>
+  <%= link_to "Editeaza eveniment", edit_eveniment_path(@eveniment) %> |
+  <%= link_to "Inapoi la evenimente", eveniments_path %>
+
+  <%= button_to "Sterge eveniment", @eveniment, method: :delete %>
+</div>

@@ -3,14 +3,14 @@
     "",
     "\\app",
     "\\app\\assets",
-    "\\app\\channels\\application_cable",
-    "\\app\\controllers",
-    "\\app\\javascript\\controllers",
+    "\\app\\assets\\stylesheets",
+    "\\app\\javascript",
     "\\app\\views",
     "\\app\\views\\layouts",
-    "\\config",
-    "\\lib"
+    "\\app\\views\\muzeu",
+    "\\app\\views\\rezervari",
+    "\\config"
   ],
-  "SelectedNode": "\\app\\views",
+  "SelectedNode": "\\app\\views\\muzeu\\index.html.erb",
   "PreviewInSolutionExplorer": false
 }
