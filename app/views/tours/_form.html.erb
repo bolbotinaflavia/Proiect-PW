@@ -1,0 +1,32 @@
+<%= form_with(model: tour) do |form| %>
+  <% if tour.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(tour.errors.count, "error") %> prohibited this tour from being saved:</h2>
+
+      <ul>
+        <% tour.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+ <div class="field">
+    <%= form.label :eveniment_id %>
+    <%= form.select :eveniment_id,options_for_select(Eveniment.all.map { |c| [c.titlu, c.id] })  %>
+  </div>
+
+  <div>
+    <%= form.label :data_ora, style: "display: block" %>
+    <%= form.datetime_field :data_ora %>
+  </div>
+
+  <div>
+    <%= form.label :detalii, style: "display: block" %>
+    <%= form.text_area :detalii %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

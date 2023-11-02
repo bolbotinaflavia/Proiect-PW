@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @rezervare %>
+
+<div>
+  <%= link_to "Edit this rezervare", edit_rezervare_path(@rezervare) %> |
+  <%= link_to "Back to rezervares", rezervares_path %>
+
+  <%= button_to "Destroy this rezervare", @rezervare, method: :delete %>
+</div>

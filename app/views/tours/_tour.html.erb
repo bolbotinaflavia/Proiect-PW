@@ -1,0 +1,17 @@
+<div id="<%= dom_id tour %>">
+<p>
+    <strong>Eveniment:</strong>
+    <% eveniment = Eveniment.find_by(id: tour.eveniment_id) %>
+    <%=link_to eveniment.titlu, eveniment if eveniment.present? %>
+  </p>
+  <p>
+    <strong>Data ora:</strong>
+    <%= tour.data_ora %>
+  </p>
+
+  <p>
+    <strong>Detalii:</strong>
+    <%= tour.detalii %>
+  </p>
+
+</div>

@@ -14,78 +14,143 @@
  *= require_self
  */
 .simple-calendar {
-    width: 100%;
+    table
+
+{
+    -webkit-border-horizontal-spacing: 0px;
+    -webkit-border-vertical-spacing: 0px;
+    background-color: rgba(0, 0, 0, 0);
+    border: 1px solid rgb(221, 221, 221);
     border-collapse: collapse;
-    border-spacing: 0;
-    border: 1px solid #ccc;
-    font-size: 12px;
-    font-family: Arial, sans-serif;
-    color: #333;
-    background-color: #fff;
+    box-sizing: border-box;
+    max-width: 100%;
+    width: 100%;
+}
+
+tr {
+    border-collapse: collapse;
+}
+
+th {
+    padding: 6px;
+    border-bottom: 2px solid rgb(221, 221, 221);
+    border-collapse: collapse;
+    border-left: 1px solid rgb(221, 221, 221);
+    border-right: 1px solid rgb(221, 221, 221);
+    border-top: 0px none rgb(51, 51, 51);
+    box-sizing: border-box;
+    text-align: left;
+}
+
+td {
+    padding: 6px;
+    vertical-align: top;
+    width: 14%;
+    border: 1px solid #ddd;
+    border-top-color: rgb(221, 221, 221);
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-right-color: rgb(221, 221, 221);
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-bottom-color: rgb(221, 221, 221);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-left-color: rgb(221, 221, 221);
+    border-left-style: solid;
+    border-left-width: 1px;
+}
+
+.calendar-heading nav {
+    display: inline-block;
 }
 
 .day {
-    padding: 5px;
-    border: 1px solid #ccc;
-    text-align: center;
+    height: 80px;
 }
 
 .wday-0 {
-    color: #f00;
 }
 
 .wday-1 {
-    color: #000;
 }
 
 .wday-2 {
-    color: #000;
 }
 
 .wday-3 {
-    color: #000;
 }
 
 .wday-4 {
-    color: #000;
 }
 
 .wday-5 {
-    color: #000;
 }
 
 .wday-6 {
-    color: #f00;
 }
 
 .today {
-    background-color: #f0f0f0;
+    background: #FFFFC0
 }
 
 .past {
-    color: #ccc;
 }
 
 .future {
-    color: #000;
 }
 
 .start-date {
-    background-color: #f0f0f0;
 }
 
 .prev-month {
-    color: #ccc;
+    background: #DDD;
 }
 
 .next-month {
-    color: #ccc;
+    background: #DDD;
 }
 
 .current-month {
-    color: #000;
 }
 
 .has-events {
-    background-color: #f0f0f0;
+}
+}
+.modal {
+    position: fixed;
+    z-index: 1;
+    padding: 2em;
+    /* Centering */
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    /* Add the drop shadow */
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.2), 0 5px 10px 0 rgba(0,0,0,0.19);
+}
+
+.cancel-button {
+    background-color: #1530ff;
+    font-size: 12px;
+    color: white;
+    padding: 4px 8px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+    text-decoration: none;
+}
+
+    .cancel-button:hover {
+        background-color: #2640fe;
+    }
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
 }

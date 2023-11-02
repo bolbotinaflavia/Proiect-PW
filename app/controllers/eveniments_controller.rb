@@ -65,6 +65,10 @@ class EvenimentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def eveniment_params
-      params.require(:eveniment).permit(:titlu, :descriere, :timp_start, :timp_final)
+      params.require(:eveniment).permit(:titlu, :descriere, :start_time, :end_time)
     end
+    def get_events
+    @eveniment = Eveniment.find(params[:id]) 
+    end
+     
 end

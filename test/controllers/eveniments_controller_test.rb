@@ -17,7 +17,7 @@ class EvenimentsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create eveniment" do
     assert_difference("Eveniment.count") do
-      post eveniments_url, params: { eveniment: { descriere: @eveniment.descriere, timp_final: @eveniment.timp_final, timp_start: @eveniment.start_time, titlu: @eveniment.titlu } }
+      post eveniments_url, params: { eveniment: { descriere: @eveniment.descriere, end_time: @eveniment.end_time, start_time: @eveniment.start_time, titlu: @eveniment.titlu } }
     end
 
     assert_redirected_to eveniment_url(Eveniment.last)
@@ -34,7 +34,7 @@ class EvenimentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update eveniment" do
-    patch eveniment_url(@eveniment), params: { eveniment: { descriere: @eveniment.descriere, timp_final: @eveniment.timp_final, timp_start: @eveniment.start_time, titlu: @eveniment.titlu } }
+    patch eveniment_url(@eveniment), params: { eveniment: { descriere: @eveniment.descriere, end_time: @eveniment.end_time, start_time: @eveniment.start_time, titlu: @eveniment.titlu } }
     assert_redirected_to eveniment_url(@eveniment)
   end
 

@@ -1,0 +1,11 @@
+<p style="color: green"><%= notice %></p>
+<h1>Tur ghidat</h1>
+
+<%= render @tour %>
+
+<div>
+  <%= link_to "Editare", edit_tour_path(@tour) %> |
+  <%= link_to "Inapoi la tururi", tours_path %>
+
+  <%= button_to "Sterge", @tour, method: :delete %>
+</div>

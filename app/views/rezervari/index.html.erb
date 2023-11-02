@@ -1,28 +1,20 @@
 <div class="container mt-5 text-center">
 	<h1>Rezervari</h1>
-	<%= month_calendar(events: @eveniments) do |date,eveniments|%>
-		<div class="day">
-			<%= date.day%>
-		</div>
-		<% eveniments.each do |eveniment| %>
+	<%= month_calendar(events: @eveniments, tours: @tours) do |date,eveniments,tours|%>
+	<div class="day">
+		<%= date.day%>
+	</div>
+	<% eveniments.each do |eveniment| %>
       <div class="card-header">
-			<h7 class="card-title">
-				<%= link_to eveniment.titlu, eveniment %>
-			</h7>
-		</div>
-		<div class="card-body">
-			<p class="card-text">
-				<%= eveniment.descriere %>
-			</p>
-		</div>
-		<div class="card-footer">
-			<p class="card-text">
-				From: <%= eveniment.start_time.strftime('%A, %B %d, %Y at %I:%M %p') %>
-			</p>
-			<p class="card-text">
-				To: <%= eveniment.end_time.strftime('%A, %B %d, %Y at %I:%M %p') %>
-			</p>
-		</div>
-			<%end%>
+		<h7 class="card-title">
+			<% if @tours.present? %>
+				  <% eveniment_tours = @tours.where(eveniment_id: eveniment.id) %>
+				  <% eveniment_tours.each do |tour| %>
+					  <%= link_to eveniment.titlu, tour_path(tour) %>
+			<% end %>
+				  <% end %>
+		</h7>
+		<!-- de facut rezervari pt evenimente-->
 		<%end%>
+			<%end%>
 </div>

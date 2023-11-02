@@ -4,13 +4,13 @@
     "\\app",
     "\\app\\assets",
     "\\app\\assets\\stylesheets",
-    "\\app\\javascript",
-    "\\app\\views",
-    "\\app\\views\\layouts",
-    "\\app\\views\\muzeu",
-    "\\app\\views\\rezervari",
-    "\\config"
+    "\\app\\channels",
+    "\\app\\channels\\application_cable",
+    "\\app\\helpers",
+    "\\app\\javascript\\controllers",
+    "\\test",
+    "\\test\\controllers"
   ],
-  "SelectedNode": "\\app\\views\\muzeu\\index.html.erb",
+  "SelectedNode": "\\app\\views\\eveniments\\_form.html.erb",
   "PreviewInSolutionExplorer": false
 }

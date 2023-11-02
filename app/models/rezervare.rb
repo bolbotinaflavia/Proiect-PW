@@ -1,0 +1,2 @@
+class Rezervare < ApplicationRecord
+end
