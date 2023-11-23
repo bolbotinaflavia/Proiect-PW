@@ -1,0 +1,17 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Users</h1>
+
+<ul>
+	<% @users.each do |user| %>
+	<li >
+		<%= render user 	%>
+			<p>
+				<%= link_to "Vizualizati user", user %>
+			</p>
+		<!-- <%= render partial:'user', locals:{ user: user } %> -->
+	</li>
+	<% end %>
+</ul>
+
+<%= link_to "New user", new_user_path %>

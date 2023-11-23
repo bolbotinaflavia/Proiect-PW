@@ -4,17 +4,19 @@
 	<div class="day">
 		<%= date.day%>
 	</div>
-	<% eveniments.each do |eveniment| %>
+	
+    <% @eveniments.each do |eveniment|%>
       <div class="card-header">
-		<h7 class="card-title">
-			<% if @tours.present? %>
-				  <% eveniment_tours = @tours.where(eveniment_id: eveniment.id) %>
-				  <% eveniment_tours.each do |tour| %>
-					  <%= link_to eveniment.titlu, tour_path(tour) %>
-			<% end %>
-				  <% end %>
-		</h7>
-		<!-- de facut rezervari pt evenimente-->
-		<%end%>
-			<%end%>
+        <h7 class="card-title">
+            <% eveniment_tours = @tours.where(eveniment_id: eveniment.id) %>
+			<% eveniment_tours =eveniment_tours.select { |tour| tour.data_ora.to_date == date } %>
+            <% eveniment_tours.each do |tour| %>
+              <%= link_to eveniment.titlu, tour_path(tour) %>
+              <%= tour.data_ora.strftime("%H:%M") %>
+              <br>
+            <% end %>
+          <% end %>
+        </h7>
+      </div>
+    <% end %>
 </div>

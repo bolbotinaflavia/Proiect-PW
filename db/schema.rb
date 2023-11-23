@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_02_182341) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_23_195224) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -40,12 +40,15 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_02_182341) do
   end
 
   create_table "eveniments", force: :cascade do |t|
+    t.integer "tours_id"
     t.string "titlu"
     t.text "descriere"
     t.datetime "start_time"
     t.datetime "end_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["tours_id"], name: "index_eveniment_on_tours_id"
+
   end
 
   create_table "ideas", force: :cascade do |t|
@@ -74,6 +77,13 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_02_182341) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["eveniment_id"], name: "index_tours_on_eveniment_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "password"
+    t.boolean "admin", default: false
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

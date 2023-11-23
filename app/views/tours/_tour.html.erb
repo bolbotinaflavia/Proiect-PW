@@ -2,7 +2,10 @@
 <p>
     <strong>Eveniment:</strong>
     <% eveniment = Eveniment.find_by(id: tour.eveniment_id) %>
-    <%=link_to eveniment.titlu, eveniment if eveniment.present? %>
+    <% if eveniment.present? %>
+      <% eveniment.update_attribute(:tours_id, tour.id) %>
+      <%= link_to eveniment.titlu, eveniment %>
+    <% end %>
   </p>
   <p>
     <strong>Data ora:</strong>
