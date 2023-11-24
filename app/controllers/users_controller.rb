@@ -1,38 +1,62 @@
 class UsersController < ApplicationController
-    before_action :logged_in_user, only: [:show]
-   before_action :check_user,only: [:index, :show, :destroy]
-   # before_action :admin_user,only: [:destroy,:make_admin]
+  before_action :check_user,only: [:index, :show, :destroy]
+  before_action :admin_user,only: [:destroy,:make_admin]
+  before_action :check_delete_user,only:[:destroy]
 
-  # GET /users or /users.json
   def index
-    @users = User.all
+    @users = User.all;
   end
-
-  # GET /users/1 or /users/1.json
   def show
+    @user = User.where(id: params[:id]).first
+    if @user.present?
+        @rezervares = @user.rezervares.paginate(page: params[:page], per_page: 5)
+        @rezervare = Rezervare.new
+    end
   end
-
-  # GET /users/new
+  
   def new
-    @user = User.new
+    @user=User.new
   end
 
-  # GET /users/1/edit
   def edit
   end
-
-  # POST /users or /users.json
   def create
-     @user = User.new(user_params)
+    @user = User.new(user_params)
     if @user.save
-        flash[:succes]="User adaugat"
-        log_in(@user)
-        redirect_to user_path(@user)
-          else
-            render 'users/new' ,status: 422
-        end
+      flash[:succes]="User adaugat"
+      log_in(@user)
+      redirect_to user_path(@user)
+    else
+        render 'users/new' ,status: 422
+    end
+  end
+  
+  def make_admin
+    @user=User.find(params[:id])
+    @user.update(admin:true)
   end
 
+  def check_delete_user
+    @user=User.find(params[:id])
+    if @user.name[0]!='A'
+        redirect_to users_path
+        flash[:error]='Nu incepe cu A'
+    end
+  end
+  
+  def destroy
+    @user=User.find(params[:id])
+    #if @user.name[0]=='A'
+        @user.destroy
+        flash[:succes]='Userul a fost sters'
+        redirect_to users_path
+    #else
+     #   flash[:error]='Nu incepe cu A'
+      #  redirect_to users_path
+    #end
+  end
+
+  
   # PATCH/PUT /users/1 or /users/1.json
   def update
     respond_to do |format|
@@ -45,28 +69,14 @@ class UsersController < ApplicationController
       end
     end
   end
-  def make_admin
-        @user=User.find(params[:id])
-        @user.update(admin:true)
-    end
-  # DELETE /users/1 or /users/1.json
-  def destroy
-    @user.destroy!
 
-    respond_to do |format|
-      format.html { redirect_to users_url, notice: "User was successfully destroyed." }
-      format.json { head :no_content }
-    end
-  end
-
+  
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def user_params
-       params.require(:user).permit(:name,:email,:password,:admin)
-    end
+  # Only allow a list of trusted parameters through.
+  def user_params
+     params.require(:user).permit(:name,:email,:password,:admin)
+  end
+   
+
 end

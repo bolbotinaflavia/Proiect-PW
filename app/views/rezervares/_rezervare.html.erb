@@ -1,5 +1,11 @@
 <div id="<%= dom_id rezervare %>">
   <p>
+  <strong>Tours:</strong>
+  <% tour = Tours.find_by(id: Rezervare.tours_id) %>
+  <% if tour.present? %>
+    <% tour.update_attribute(:tours_id, tour.id) %>
+    <%= link_to eveniment.titlu, eveniment %>
+  <% end %>
     <strong>Nume:</strong>
     <%= rezervare.nume %>
   </p>

@@ -10,6 +10,13 @@ class EvenimentsController < ApplicationController
   def show
   end
 
+  def tours_for_event
+    @eveniment = Eveniment.find(params[:id])
+    @tours = @eveniment.tours
+    puts @tours.inspect # Afișează tururile în consolă
+    render json: @tours
+  end
+
   # GET /eveniments/new
   def new
     @eveniment = Eveniment.new

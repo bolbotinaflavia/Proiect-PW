@@ -11,6 +11,15 @@
     </div>
   <% end %>
 
+  <div class="field">
+  <%= form.label :eveniment_id %>
+  <%= form.collection_select :eveniment_id, @evenimente, :id, :titlu, {}, class: 'event-select' %>
+</div>
+
+<div class="field">
+  <%= form.label :tours_id %>
+  <%= form.collection_select :tours_id, @tours, :id, :data_ora, {}, class: 'tour-select' %>
+</div>
   <div>
     <%= form.label :nume, style: "display: block" %>
     <%= form.text_area :nume %>
@@ -34,4 +43,34 @@
   <div>
     <%= form.submit %>
   </div>
-<% end %>
+  <% end %>
+ 
+  <script>
+  $(document).on('turbolinks:load', function() {
+    $('.event-select').change(function() {
+      var eventId = $(this).val();
+      if (eventId) {
+        $.ajax({
+          url: '/eveniments/' + eventId + '/tours', // Sau calea corectă către acțiunea din controler
+          type: 'GET',
+          dataType: 'json',
+          success: function(data) {
+            updateTourOptions(data);
+          },
+          error: function() {
+            console.error('Error fetching tours');
+          }
+        });
+      } else {
+        updateTourOptions([]);
+      }
+    });
+
+    function updateTourOptions(tours) {
+      var options = tours.map(function(tour) {
+        return [tour.data_ora, tour.id];
+      });
+      $('.tour-select').html(options_for_select(options));
+    }
+  });
+</script>

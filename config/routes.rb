@@ -1,14 +1,29 @@
 Rails.application.routes.draw do
   resources :rezervares
   resources :tours
+  resources :users do
+    
+    collection do
+      get :admins
+    end
+  end
+  resources :admin
   #resources :eveniments
- 
 
  root 'muzeu#index'
- resources :eveniments
+ resources :eveniments do
+  member do
+    get 'tours_for_event'
+  end
+end
  get "muzeu", to:"muzeu#index"
   get 'rezervari', to:"rezervari#index"
-  
+  resources :admin
+  get 'login', to:'sessions#new'
+  post 'login', to: 'sessions#create'
+  delete 'logout', to: 'sessions#destroy'
+  get 'make_admin', to: 'users#make_admin'
+  post 'make admin', to: 'users#make_admin'
  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

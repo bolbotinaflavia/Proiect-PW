@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_23_195224) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_23_211847) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -39,6 +39,11 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_23_195224) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "admins", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "eveniments", force: :cascade do |t|
     t.integer "tours_id"
     t.string "titlu"
@@ -48,7 +53,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_23_195224) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["tours_id"], name: "index_eveniment_on_tours_id"
-
   end
 
   create_table "ideas", force: :cascade do |t|
@@ -61,6 +65,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_23_195224) do
 
   create_table "rezervares", force: :cascade do |t|
     t.integer "tours_id"
+    t.integer "user_id", null: false
     t.text "nume"
     t.text "prenume"
     t.text "email"
@@ -68,6 +73,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_23_195224) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["tours_id"], name: "index_rezervares_on_tours_id"
+    t.index ["user_id"], name: "index_rezervares_on_user_id"
   end
 
   create_table "tours", force: :cascade do |t|
@@ -82,10 +88,10 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_23_195224) do
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
-    t.string "password"
+    t.string "password_digest"
     t.boolean "admin", default: false
   end
-
+  add_foreign_key "rezervares", "users"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
 end
