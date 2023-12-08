@@ -11,4 +11,7 @@
   <% end %>
 </div>
 
+<% if current_user.admin? %>
 <%= link_to "Tur nou", new_tour_path %>
+<% end %>
+
