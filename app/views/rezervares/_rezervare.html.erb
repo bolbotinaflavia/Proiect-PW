@@ -1,15 +1,31 @@
 <div id="<%= dom_id rezervare %>">
   <p>
-  <strong>Tours:</strong>
-  <% tour = Tours.find_by(id: Rezervare.tours_id) %>
-  <% if tour.present? %>
-    <% tour.update_attribute(:tours_id, tour.id) %>
-    <%= link_to eveniment.titlu, eveniment %>
-  <% end %>
-    <strong>Nume:</strong>
-    <%= rezervare.nume %>
+    <strong>Eveniment:</strong>
+    <% if rezervare.tours_id.present? && rezervare.tours_id != 0 %>
+      <% tour = Tour.find_by(id: rezervare.tours_id) %>
+      <% if tour.present? && tour.eveniment_id.present? %>
+        <% eveniment = Eveniment.find_by(id: tour.eveniment_id) %>
+        <%= link_to eveniment.titlu, eveniment %>
+      <% else %>
+        Evenimentul asociat nu poate fi găsit.
+      <% end %>
+    <% else %>
+      Rezervarea nu conține un tur valid.
+    <% end %>
   </p>
-
+  <p>
+    <strong>Ora și data turului:</strong>
+    <% if rezervare.tours_id.present? && rezervare.tours_id != 0 %>
+      <% tour = Tour.find_by(id: rezervare.tours_id) %>
+      <% if tour.present? %>
+        <%= tour.data_ora.strftime("%Y-%m-%d %H:%M") %>
+      <% else %>
+        Turul asociat nu poate fi găsit.
+      <% end %>
+    <% else %>
+      Rezervarea nu conține un tur valid.
+    <% end %>
+  </p>
   <p>
     <strong>Prenume:</strong>
     <%= rezervare.prenume %>
@@ -24,5 +40,4 @@
     <strong>Telefon:</strong>
     <%= rezervare.telefon %>
   </p>
-
 </div>

@@ -4,8 +4,11 @@
 <%= render @tour %>
 
 <div>
+<% if current_user.admin? %>
   <%= link_to "Editare", edit_tour_path(@tour) %> |
-  <%= link_to "Inapoi la tururi", tours_path %>
+  
 
   <%= button_to "Sterge", @tour, method: :delete %>
+  <%end%>
+  <%= link_to "Inapoi la tururi", tours_path %>
 </div>

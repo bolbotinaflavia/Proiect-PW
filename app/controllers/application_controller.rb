@@ -13,7 +13,4 @@ class ApplicationController < ActionController::Base
     def check_user
         redirect_to login_path unless logged_in?
     end
-    def check_user_post
-        redirect_to user_path unless current_user
-    end
 end

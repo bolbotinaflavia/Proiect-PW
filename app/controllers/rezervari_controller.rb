@@ -1,4 +1,6 @@
 class RezervariController < ApplicationController
+  before_action :check_user,only: [:index]
+  #before_action :admin_user,only: [:destroy,:new, :edit, :create]
   def index
     #@eveniments = Eveniment.all
    # @tours=Tour.all;

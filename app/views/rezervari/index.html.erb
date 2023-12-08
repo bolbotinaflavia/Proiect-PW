@@ -1,22 +1,29 @@
+
 <div class="container mt-5 text-center">
-	<h1>Rezervari</h1>
-	<%= month_calendar(events: @eveniments, tours: @tours) do |date,eveniments,tours|%>
-	<div class="day">
-		<%= date.day%>
-	</div>
-	
-    <% @eveniments.each do |eveniment|%>
+  <h1>Rezervari</h1>
+  <%= month_calendar(events: @eveniments, tours: @tours) do |date, eveniments, tours| %>
+    <div class="day">
+      <%= date.day %>
+    </div>
+
+    <% @eveniments.each do |eveniment| %>
       <div class="card-header">
         <h7 class="card-title">
-            <% eveniment_tours = @tours.where(eveniment_id: eveniment.id) %>
-			<% eveniment_tours =eveniment_tours.select { |tour| tour.data_ora.to_date == date } %>
-            <% eveniment_tours.each do |tour| %>
-              <%= link_to eveniment.titlu, tour_path(tour) %>
-              <%= tour.data_ora.strftime("%H:%M") %>
-              <br>
-            <% end %>
+          <% eveniment_tours = @tours.where(eveniment_id: eveniment.id) %>
+          <% eveniment_tours = eveniment_tours.select { |tour| tour.data_ora.to_date == date } %>
+          <% eveniment_tours.each do |tour| %>
+            <%= link_to eveniment.titlu, tour_path(tour) %>
+            <%= tour.data_ora.strftime("%H:%M") %>
+            <%= link_to 'Rezervare', new_rezervare_path(tour_id: tour.id),  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window-#{tour_id}', class: 'btn btn-primary btn-lg'}  %>
+<div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content"></div>
+  </div>
+</div>
+          
           <% end %>
-        </h7>
-      </div>
-    <% end %>
+        <% end %>
+      </h7>
+    </div>
+  <% end %>
 </div>

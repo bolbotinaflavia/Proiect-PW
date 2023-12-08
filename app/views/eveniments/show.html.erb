@@ -3,8 +3,11 @@
 <%= render @eveniment %>
 
 <div>
+<% if current_user.admin? %>
   <%= link_to "Editeaza eveniment", edit_eveniment_path(@eveniment) %> |
-  <%= link_to "Inapoi la evenimente", eveniments_path %>
+  
 
   <%= button_to "Sterge eveniment", @eveniment, method: :delete %>
+<%end%>
+<%= link_to "Inapoi la evenimente", eveniments_path %>
 </div>

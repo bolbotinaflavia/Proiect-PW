@@ -1,18 +1,32 @@
 class RezervaresController < ApplicationController
   before_action :set_rezervare, only: %i[ show edit update destroy ]
-
+  before_action :check_user_rezervare, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+  before_action :admin_user, only: [:destroy, :index]
   # GET /rezervares or /rezervares.json
   def index
     @rezervares = Rezervare.all
+   # @eveniment = Eveniment.find(params[:eveniment_id]) # sau cumva obțineți evenimentul
+    #@tour = Tour.find(params[:tour_id]) # sau cumva obțineți turul
   end
 
   # GET /rezervares/1 or /rezervares/1.json
   def show
+    @rezervare = Rezervare.find_by(id: params[:id])
+    unless @rezervare
+      flash[:alert] = "Rezervare not found"
+      redirect_to rezervares_path
+    end
   end
 
   # GET /rezervares/new
   def new
+    respond_to do |format|
+      format.html
+      format.js
+    end
+    @user = current_user
     @rezervare = Rezervare.new
+    @rezervare.tours_id = params[:tour_id]
   end
 
   # GET /rezervares/1/edit
@@ -56,7 +70,17 @@ class RezervaresController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  def check_user_rezervare
+    # Verifică dacă utilizatorul curent este prezent și setează logica pentru acces
+    if params[:id].present?
+      # Dacă este o acțiune specifică asupra unei rezervări (show, edit, update, destroy)
+      @rezervare = Rezervare.find(params[:id])
+      redirect_to(root_url) unless current_user.present? && (@rezervare.user == current_user || current_user.admin?)
+    else
+      # Pentru acțiuni generale (index, new, create)
+      redirect_to(root_url) unless current_user.present?
+    end
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_rezervare
@@ -65,6 +89,8 @@ class RezervaresController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def rezervare_params
-      params.require(:rezervare).permit(:nume, :prenume, :email, :telefon)
+      params.require(:rezervare).permit(:tours_id, :user_id, :nume, :prenume, :email, :telefon)
     end
+  
+    
 end

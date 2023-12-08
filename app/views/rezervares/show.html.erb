@@ -3,8 +3,9 @@
 <%= render @rezervare %>
 
 <div>
-  <%= link_to "Edit this rezervare", edit_rezervare_path(@rezervare) %> |
+  <% if @rezervare && @rezervare.persisted? %>
+    <%= link_to "Edit this rezervare", edit_rezervare_path(@rezervare) %> |
+  <% end %>
   <%= link_to "Back to rezervares", rezervares_path %>
-
   <%= button_to "Destroy this rezervare", @rezervare, method: :delete %>
 </div>

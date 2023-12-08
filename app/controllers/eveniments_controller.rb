@@ -1,4 +1,7 @@
 class EvenimentsController < ApplicationController
+  #restrictioneaza unele actiuni pentru users
+  before_action :check_user,only: [:index, :show]
+  before_action :admin_user,only: [:destroy,:new, :edit, :create]
   before_action :set_eveniment, only: %i[ show edit update destroy ]
 
   # GET /eveniments or /eveniments.json
@@ -77,5 +80,4 @@ class EvenimentsController < ApplicationController
     def get_events
     @eveniment = Eveniment.find(params[:id]) 
     end
-     
 end

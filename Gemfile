@@ -72,4 +72,6 @@ gem "simple_calendar", "~> 3.0"
 gem 'will_paginate', '~> 3.3'
 gem 'will_paginate-bootstrap'
 gem 'bootstrap-will_paginate'
+gem 'bootstrap' 
+gem 'popper_js', '~> 1.9', '>= 1.9.9'
 

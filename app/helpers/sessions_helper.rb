@@ -10,6 +10,7 @@ module SessionsHelper
     end
     def log_out
         session[:user_id]=nil
+        reset_session
     end
     def logged_in?
         current_user.present?

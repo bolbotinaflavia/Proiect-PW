@@ -2,7 +2,6 @@
   <% if rezervare.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(rezervare.errors.count, "error") %> prohibited this rezervare from being saved:</h2>
-
       <ul>
         <% rezervare.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -10,16 +9,14 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-  <%= form.label :eveniment_id %>
-  <%= form.collection_select :eveniment_id, @evenimente, :id, :titlu, {}, class: 'event-select' %>
+  <div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal">x</button>
+  <h4 class="modal-title" id="myModalLabel">Rezervare noua</h4>
 </div>
+<div class="modal-body">
+<%= form.hidden_field :tours_id %>
+<%= form.hidden_field :user_id, value: current_user.id %>
 
-<div class="field">
-  <%= form.label :tours_id %>
-  <%= form.collection_select :tours_id, @tours, :id, :data_ora, {}, class: 'tour-select' %>
-</div>
   <div>
     <%= form.label :nume, style: "display: block" %>
     <%= form.text_area :nume %>
@@ -39,38 +36,11 @@
     <%= form.label :telefon, style: "display: block" %>
     <%= form.text_area :telefon %>
   </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
-  <% end %>
+</div>
+<div class="modal-footer">
+<%= form.submit %>
+</div>
  
-  <script>
-  $(document).on('turbolinks:load', function() {
-    $('.event-select').change(function() {
-      var eventId = $(this).val();
-      if (eventId) {
-        $.ajax({
-          url: '/eveniments/' + eventId + '/tours', // Sau calea corectă către acțiunea din controler
-          type: 'GET',
-          dataType: 'json',
-          success: function(data) {
-            updateTourOptions(data);
-          },
-          error: function() {
-            console.error('Error fetching tours');
-          }
-        });
-      } else {
-        updateTourOptions([]);
-      }
-    });
 
-    function updateTourOptions(tours) {
-      var options = tours.map(function(tour) {
-        return [tour.data_ora, tour.id];
-      });
-      $('.tour-select').html(options_for_select(options));
-    }
-  });
-</script>
+<% end %>
+

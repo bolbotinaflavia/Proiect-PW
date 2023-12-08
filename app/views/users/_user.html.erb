@@ -3,10 +3,11 @@
     <h5 class="card-title"><%=link_to(user.name,"/users/#{user.id}")%><br></h5>
     <p class="card-text">email: <%= user.email %><br>
 <% if current_user.admin? && !current_user?(user) && !user.admin%>
+
 <%= link_to 'delete', user, data: {turbo_method: :delete,turbo_confirm:'Are you sure?'} %><br>
 <% end %>
 <% if current_user.admin? && !current_user?(user) && !user.admin%>
-<%= link_to 'make admin',user,action: :make_admin,turbo_method: :post%>
+<%= button_to 'Make admin', make_admin_user_path(user), method: :post, remote: true %>
 <% end %>
 </div>
 </div>

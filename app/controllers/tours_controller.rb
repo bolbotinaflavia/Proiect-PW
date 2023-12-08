@@ -1,4 +1,6 @@
 class ToursController < ApplicationController
+  before_action :check_user,only: [:index, :show]
+  before_action :admin_user,only: [:destroy,:new, :edit, :create]
   before_action :set_tour, only: %i[ show edit update destroy ]
 
   # GET /tours or /tours.json
@@ -6,6 +8,7 @@ class ToursController < ApplicationController
     @tours = Tour.all
     
   end
+
 
   # GET /tours/1 or /tours/1.json
   def show

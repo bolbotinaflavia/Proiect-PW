@@ -10,5 +10,7 @@
     </p>
   <% end %>
 </div>
-
+<% if current_user.admin? %>
 <%= link_to "Eveniment nou", new_eveniment_path %>
+<% end %>
+
