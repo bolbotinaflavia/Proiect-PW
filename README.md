@@ -8,16 +8,16 @@
 ## Cerinte si specificatii
 
 ### Cerinte: 
-*Prezentarea generala a muzeului
-*Prezentarea expozitiilor permanente/ temporale
-*Calendar pentru rezervari tururi ghidate, evenimente
+* Prezentarea generala a muzeului
+* Prezentarea expozitiilor permanente/ temporale
+* Calendar pentru rezervari tururi ghidate, evenimente
 
 ### Specificatii: 
-*Pagina de start
-*Meniu	
-*Bara de navigatie
-*Optiunea de sign in, log in (pentru rezervare, achizitii)
-*Functie de admin
+* Pagina de start
+* Meniu	
+* Bara de navigatie
+* Optiunea de sign in, log in (pentru rezervare, achizitii)
+* Functie de admin
 
 ![Screenshot (52)](https://github.com/bolbotinaflavia/Proiect-PW/assets/45201779/58ac7b76-1cff-4add-971a-3feb57c2a0b1)
 ![Screenshot (54)](https://github.com/bolbotinaflavia/Proiect-PW/assets/45201779/aa6287c6-da46-4d94-8bd9-cf30614e7dfb)
