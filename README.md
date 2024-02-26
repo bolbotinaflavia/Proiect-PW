@@ -2,17 +2,17 @@
 
 
 
-##Prezentare generala:
+## Prezentare generala:
 	Proiectul prezinta site-ul web al unui muzeu fictiv. 
 
-##Cerinte si specificatii
+## Cerinte si specificatii
 
-###Cerinte: 
+### Cerinte: 
 *Prezentarea generala a muzeului
 *Prezentarea expozitiilor permanente/ temporale
 *Calendar pentru rezervari tururi ghidate, evenimente
 
-###Specificatii: 
+### Specificatii: 
 *Pagina de start
 *Meniu	
 *Bara de navigatie
